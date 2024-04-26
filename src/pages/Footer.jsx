@@ -9,7 +9,7 @@ export default function Footer() {
 		fetch("https://api.github.com/users/nurhlmi/events/public")
 			.then((response) => response.json())
 			.then((data) => {
-				const value = data.filter((value) => value.repo.name === "nurhlmi/nurhlmi.github.io")[0];
+				const value = data.filter((value) => value.repo.name === "nurhlmi/nurhlmi.github.io")[1];
 				setGit(value);
 			});
 	}, []);
