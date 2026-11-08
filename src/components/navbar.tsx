@@ -1,6 +1,7 @@
 import { Card, Container, IconButton, Stack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Code, Envelope, Globe, Home, User4 } from "reicon-react";
+import { useRouter } from "next/router";
+import { Code, Envelope, Globe, Headphones, Home, User4 } from "reicon-react";
 import { ColorModeButton } from "./ui/color-mode";
 import { Tooltip } from "./ui/tooltip";
 
@@ -12,10 +13,15 @@ const navs = [
    { id: "follow-me", label: "Contact & Follow Me", icon: Envelope },
 ]
 
+const SONGS_NAV = { id: "songs", label: "Songs", icon: Headphones };
+
 export default function Navbar() {
    const [active, setActive] = useState("home");
+   const { pathname } = useRouter();
+   const onSongs = pathname === "/songs";
 
    useEffect(() => {
+      if (onSongs) return;
       // The active item is the last section whose top has reached the top of the viewport.
       const update = () => {
          if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
@@ -36,7 +42,9 @@ export default function Navbar() {
          window.removeEventListener("scroll", update);
          window.removeEventListener("resize", update);
       };
-   }, []);
+   }, [onSongs]);
+
+   const items = [...navs, SONGS_NAV];
 
    return (
       <Container centerContent position="fixed" bottom={4} zIndex={1} pointerEvents="none">
@@ -44,12 +52,14 @@ export default function Navbar() {
             <Card.Body p={2}>
                <Stack direction="row" justifyContent="space-between" alignItems="center">
                   <Stack direction="row" gap={2}>
-                     {navs.map((nav, i) => {
+                     {items.map((nav, i) => {
                         const Icon = nav.icon;
-                        const isActive = active === nav.id;
+                        const isSongs = nav.id === SONGS_NAV.id;
+                        const isActive = isSongs ? onSongs : !onSongs && active === nav.id;
+                        const href = isSongs ? "/songs" : onSongs ? `/#${nav.id}` : `#${nav.id}`;
                         return (
                            <Tooltip content={nav.label} key={i} positioning={{ placement: "top" }}>
-                              <a href={`#${nav.id}`}>
+                              <a href={href}>
                                  <IconButton variant={isActive ? "subtle" : "ghost"} rounded="full" aria-label={nav.label}>
                                     <Icon weight={isActive ? "Filled" : "Outline"} />
                                  </IconButton>

@@ -3,7 +3,6 @@ import FollowMe from "@/components/follow-me";
 import Preview from "@/components/preview";
 import Projects from "@/components/projects";
 import Seo from "@/components/seo";
-import Spotify from "@/components/spotify";
 import TechStack from "@/components/tech-stack";
 import { Stack } from "@chakra-ui/react";
 
@@ -15,7 +14,6 @@ export default function Home() {
       <About />
       <Projects />
       <TechStack />
-      <Spotify />
       <FollowMe />
     </Stack>
   );
