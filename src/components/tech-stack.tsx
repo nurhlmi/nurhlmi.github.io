@@ -1,5 +1,6 @@
 import { TECH, type TechKey } from "@/lib/tech";
 import { Card, Heading, Stack } from "@chakra-ui/react";
+import { useT } from "@/lib/i18n";
 import TechBadge from "./tech-badge";
 
 const stack: TechKey[] = [
@@ -17,10 +18,11 @@ const stack: TechKey[] = [
 ];
 
 export default function TechStack() {
+  const t = useT().techStack;
   return (
     <Card.Root id="tech-stack" scrollMarginTop="24px" rounded="2xl" animation="slide, fade-in" animationDuration="1s">
       <Card.Body gap={4}>
-        <Heading size="xl" color="gray.500">Tech Stack</Heading>
+        <Heading size="xl" color="gray.500">{t.title}</Heading>
         <Stack direction="row" flexWrap="wrap" gap={2}>
           {stack.map((key) => (
             <TechBadge key={key} tech={TECH[key]} />

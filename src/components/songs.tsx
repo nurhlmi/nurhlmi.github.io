@@ -1,17 +1,19 @@
 import { Avatar, Badge, Box, Button, Card, Heading, Stack, Text } from "@chakra-ui/react";
 import { ArrowUpRightSquare } from "reicon-react";
 import Spotify from "./spotify";
+import { useT } from "@/lib/i18n";
 import { SONGS, TOP_ARTISTS, spotifySearchUrl, type Song } from "@/lib/songs";
 
 const MEDALS = ["#f5b301", "#9ca3af", "#b4691f"];
 
 export function TopArtists() {
+  const t = useT().songs;
   // Podium order: #2, #1, #3 so the winner sits in the middle and stands taller.
   const podium = [1, 0, 2].map((i) => ({ ...TOP_ARTISTS[i], rank: i }));
   return (
     <Card.Root id="top-artists" scrollMarginTop="24px" rounded="2xl" animation="slide, fade-in" animationDuration="1s">
       <Card.Body gap={4}>
-        <Heading size="xl" color="gray.500">Top Artists</Heading>
+        <Heading size="xl" color="gray.500">{t.topArtists}</Heading>
         <Stack direction="row" gap={3} alignItems="flex-end">
           {podium.map((artist) => {
             const first = artist.rank === 0;
@@ -63,11 +65,12 @@ export function TopArtists() {
 }
 
 function SongCard({ song }: { song: Song }) {
+  const t = useT().songs;
   return (
     <Card.Root rounded="2xl" animation="slide, fade-in" animationDuration="1s">
       <Card.Body gap={3}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <Heading size="md" color="gray.500">{song.category}</Heading>
+          <Heading size="md" color="gray.500">{t.categories[song.category] ?? song.category}</Heading>
         </Stack>
         {song.spotifyId ? (
           <iframe
@@ -92,10 +95,10 @@ function SongCard({ song }: { song: Song }) {
         ) : (
           <Box borderWidth="1px" rounded="xl" p={4}>
             <Stack direction="row" justifyContent="space-between" alignItems="center" gap={3}>
-              <Badge rounded="full" size="sm">Open on Spotify</Badge>
+              <Badge rounded="full" size="sm">{t.openOnSpotify}</Badge>
               <Button asChild size="sm" rounded="full" variant="subtle">
                 <a href={spotifySearchUrl(song)} target="_blank" rel="noreferrer">
-                  Search <ArrowUpRightSquare />
+                  {t.search} <ArrowUpRightSquare />
                 </a>
               </Button>
             </Stack>

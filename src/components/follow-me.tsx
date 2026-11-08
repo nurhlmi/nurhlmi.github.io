@@ -1,6 +1,7 @@
 import { Button, Card, Heading, Icon, IconButton, Link, Stack } from "@chakra-ui/react";
 import CopyEmail from "./copy-email";
 import { Download, Instagram } from "reicon-react";
+import { useT } from "@/lib/i18n";
 
 function GithubIcon() {
   return (
@@ -25,13 +26,14 @@ const socials = [
 ];
 
 export default function FollowMe() {
+  const t = useT();
   return (
     <Card.Root id="follow-me" scrollMarginTop="24px" rounded="2xl" animation="slide, fade-in" animationDuration="1s">
       <Card.Body gap={4} alignItems="center" textAlign="center">
-        <Heading size="3xl">Contact &amp; Follow Me</Heading>
+        <Heading size="3xl">{t.contact.title}</Heading>
         <Stack direction="row" gap={2}>
           <Button asChild rounded="full" size="sm">
-            <a href="/cv.pdf" download="CV-Nur-Hilmi.pdf"><Download /> Download CV</a>
+            <a href="/cv.pdf" download="CV-Nur-Hilmi.pdf"><Download /> {t.home.downloadCv}</a>
           </Button>
           <CopyEmail />
         </Stack>

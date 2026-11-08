@@ -1,24 +1,26 @@
 import CopyEmail from "@/components/copy-email";
 import { Avatar, Badge, Box, Button, Card, Heading, Image, Link, Stack, Text } from "@chakra-ui/react";
 import { Download } from "reicon-react";
+import { useT } from "@/lib/i18n";
 
 export default function Preview() {
+  const t = useT().home;
   return (
     <Card.Root id="home" scrollMarginTop="24px" rounded="2xl" animation="slide, fade-in" animationDuration="1s">
       <Card.Body>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <Heading size="xl" color="gray.500">Frontend Developer</Heading>
-          <Badge colorPalette="green" rounded="full" size="sm">Available</Badge>
+          <Heading size="xl" color="gray.500">{t.role}</Heading>
+          <Badge colorPalette="green" rounded="full" size="sm">{t.available}</Badge>
         </Stack>
         <Stack direction={{ base: "column-reverse", md: "row" }} justifyContent="space-between" alignItems="center" gap={5} mt={10}>
           <Stack textAlign={{ base: "center", md: "start" }}>
-            <Heading size="4xl">I’m Nur Hilmi</Heading>
+            <Heading size="4xl">{t.greeting}</Heading>
             <Text color="gray.500" maxWidth={300}>
-              Frontend Developer from Jakarta, ID. Currently working at <Link href="https://kop.go.id" target="_blank">Kemenkop</Link>.
+              {t.bioBefore}<Link href="https://kop.go.id" target="_blank">Kemenkop</Link>{t.bioAfter}
             </Text>
             <Stack direction="row" gap={2} justifyContent={{ base: "center", md: "start" }} mt={2}>
               <Button asChild rounded="full" size="sm">
-                <a href="/cv.pdf" download="CV-Nur-Hilmi.pdf"><Download /> Download CV</a>
+                <a href="/cv.pdf" download="CV-Nur-Hilmi.pdf"><Download /> {t.downloadCv}</a>
               </Button>
               <CopyEmail />
             </Stack>

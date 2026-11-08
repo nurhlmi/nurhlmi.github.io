@@ -9,7 +9,8 @@ export type ColorModeProviderProps = ThemeProviderProps
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
   return (
-    <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
+    // Chakra reads the class; liquid-glass reads data-theme (else it follows the OS, not the site).
+    <ThemeProvider attribute={["class", "data-theme"]} disableTransitionOnChange {...props} />
   )
 }
 

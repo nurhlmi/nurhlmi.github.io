@@ -1,3 +1,4 @@
+import { useT } from "@/lib/i18n";
 import ListSection from "./list-section";
 
 const projects = [
@@ -9,5 +10,7 @@ const projects = [
 ];
 
 export default function Projects() {
-  return <ListSection id="projects" title="Selected Works" items={projects} />;
+  const t = useT().projects;
+  const items = projects.map((p) => ({ ...p, description: t.descriptions[p.title] ?? p.description }));
+  return <ListSection id="projects" title={t.title} items={items} />;
 }
