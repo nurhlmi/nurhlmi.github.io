@@ -1,5 +1,6 @@
 import { TECH, type TechKey } from "@/lib/tech";
 import { Card, Heading, Stack } from "@chakra-ui/react";
+import { Code } from "reicon-react";
 import { useT } from "@/lib/i18n";
 import TechBadge from "./tech-badge";
 
@@ -13,7 +14,9 @@ const stack: TechKey[] = [
   "git",
   "github",
   "docker",
-  "antigravity",
+  "zed",
+  "apidog",
+  "dbeaver",
   "claudecode",
 ];
 
@@ -22,7 +25,10 @@ export default function TechStack() {
   return (
     <Card.Root id="tech-stack" scrollMarginTop="24px" rounded="2xl" animation="slide, fade-in" animationDuration="1s">
       <Card.Body gap={4}>
-        <Heading size="xl" color="gray.500">{t.title}</Heading>
+        <Stack direction="row" alignItems="center" gap={3}>
+          <Code width={28} height={28} color="var(--chakra-colors-gray-500)" />
+          <Heading size="xl" color="gray.500">{t.title}</Heading>
+        </Stack>
         <Stack direction="row" flexWrap="wrap" gap={2}>
           {stack.map((key) => (
             <TechBadge key={key} tech={TECH[key]} />

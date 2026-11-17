@@ -1,4 +1,4 @@
-import { Icon, Stack, Text } from "@chakra-ui/react";
+import { Icon, Image, Stack, Text } from "@chakra-ui/react";
 import type { Tech } from "@/lib/tech";
 
 export default function TechBadge(props: { tech: Tech; size?: "sm" | "md" }) {
@@ -15,11 +15,15 @@ export default function TechBadge(props: { tech: Tech; size?: "sm" | "md" }) {
       pr={small ? 2.5 : 4}
       py={small ? 1 : 2}
     >
-      <Icon boxSize={small ? 4 : 5} color={tech.color ?? "currentColor"}>
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-          <path d={tech.path} />
-        </svg>
-      </Icon>
+      {tech.image ? (
+        <Image src={tech.image} alt="" boxSize={small ? 4 : 5} rounded="sm" />
+      ) : (
+        <Icon boxSize={small ? 4 : 5} color={tech.color ?? "currentColor"}>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d={tech.path} />
+          </svg>
+        </Icon>
+      )}
       <Text fontSize={small ? "xs" : "sm"} fontWeight="medium">{tech.name}</Text>
     </Stack>
   );

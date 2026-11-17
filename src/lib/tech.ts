@@ -1,7 +1,7 @@
 import {
   siBootstrap,
   siChakraui,
-  siClaudecode,
+  siClaude,
   siDocker,
   siGit,
   siGithub,
@@ -12,13 +12,10 @@ import {
   siReact,
   siTailwindcss,
   siTypescript,
-  siWordpress,
+  siZedindustries,
 } from "simple-icons";
 
-export type Tech = { name: string; path: string; color?: string };
-
-// simple-icons has no Antigravity mark, so this is a generic arch glyph, not the official logo.
-const ANTIGRAVITY_PATH = "M12 2C7 2 3.5 7 2 20h4.2c.6-4 2.5-8 5.8-8s5.2 4 5.8 8H22C20.5 7 17 2 12 2Z";
+export type Tech = { name: string; path: string; color?: string; /** Raster logo under /public, used instead of `path`. */ image?: string };
 
 const brand = (icon: { path: string; hex: string }, name: string): Tech => ({
   name,
@@ -35,14 +32,17 @@ export const TECH = {
   mui: brand(siMui, "Material UI"),
   chakra: brand(siChakraui, "Chakra UI"),
   tailwind: brand(siTailwindcss, "Tailwind CSS"),
-  wordpress: brand(siWordpress, "WordPress"),
   jquery: brand(siJquery, "jQuery"),
   bootstrap: brand(siBootstrap, "Bootstrap"),
   git: brand(siGit, "Git"),
   github: { name: "GitHub", path: siGithub.path },
   docker: brand(siDocker, "Docker"),
-  antigravity: { name: "Antigravity IDE", path: ANTIGRAVITY_PATH, color: "#4285F4" },
-  claudecode: brand(siClaudecode, "Claude Code"),
+  // simple-icons has no Apidog mark, so the official favicon is used.
+  apidog: { name: "Apidog", path: "", image: "/logos/apidog.png" },
+  dbeaver: { name: "DBeaver", path: "", image: "/logos/dbeaver.png" },
+  // Zed's mark is monochrome: currentColor keeps it black in light mode and white in dark mode.
+  zed: { name: "Zed", path: siZedindustries.path },
+  claudecode: brand(siClaude, "Claude Code"),
 } satisfies Record<string, Tech>;
 
 export type TechKey = keyof typeof TECH;

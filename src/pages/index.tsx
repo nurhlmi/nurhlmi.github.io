@@ -1,5 +1,6 @@
 import About from "@/components/about";
-import FollowMe from "@/components/follow-me";
+import Experience from "@/components/experience";
+import { Contact } from "@/components/contact";
 import Preview from "@/components/preview";
 import Projects from "@/components/projects";
 import Seo from "@/components/seo";
@@ -11,10 +12,11 @@ export default function Home() {
     <Stack gap={4}>
       <Seo />
       <Preview />
-      <About />
       <Projects />
+      <About />
+      <Experience />
       <TechStack />
-      <FollowMe />
+      <Contact />
     </Stack>
   );
 }
